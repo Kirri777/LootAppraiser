@@ -4,6 +4,8 @@ local LA = select(2, ...)
 local Config = LA:NewModule("Config", "AceEvent-3.0")
 LA.Config = Config
 
+LA.categoryID = nil
+
 local private = {}
 
 
@@ -722,8 +724,10 @@ function Config:OnEnable()
     AceConfigRegistry:RegisterOptionsTable("LootAppraiser", options.args.general)
     --AceConfigRegistry:RegisterOptionsTable("LootAppraiser Statistic", options.args.statistic, "LootAppraiser")
 
-    local lootAppraiserConfig = AceConfigDialog:AddToBlizOptions("LootAppraiser")
+    local lootAppraiserConfig, categoryID = AceConfigDialog:AddToBlizOptions("LootAppraiser")
     lootAppraiserConfig.default = private.resetDB -- add reset function
+
+    LA.categoryID = categoryID
 
     -- Fix sink config options
     options.args.general.args.notificationOptionsGrp.args.notificationLibSink.order = 200

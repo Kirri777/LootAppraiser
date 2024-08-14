@@ -128,8 +128,9 @@ if callback then
 callback()
 end
 else
-InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
-InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+-- InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+-- InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+LA:OpenOptions()
 end
 end
 end,})
@@ -153,6 +154,18 @@ dataobj.text = LA.Util.MoneyToString(lootedItemValue)
 end
 )
 --------------------------------------------------------------
+
+function LA:OpenOptions()
+	if (Settings ~= nil) then
+		-- wow10
+		if (LA.categoryID ~= nil) then
+			Settings.OpenToCategory(LA.categoryID)
+		end
+	else
+		InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+	end
+end
+
 
 -- AceAddon-3.0 standard methods
 function LA:OnInitialize()
@@ -192,8 +205,9 @@ function LA:OnInitialize()
 						callback()
 					end
 				else
-					InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
-					InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+					-- InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+					-- InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+					LA:OpenOptions()
 				end
 			end
 		end,
@@ -657,7 +671,8 @@ end
 
 -- command to show config menu for LA (especially if mini-map is disabled)
 function private.chatCmdShowConfig()
-	InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+	-- InterfaceOptionsFrame_OpenToCategory(LA.CONST.METADATA.NAME)
+	LA:OpenOptions()
 end
 
 --[[
