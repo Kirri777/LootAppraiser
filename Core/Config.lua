@@ -136,7 +136,10 @@ local generalOptionsGroup =  {
         spacer2 = { type = "description", order = 65, name = " ", width = "full", },
         source = {
             type = "select", order = 70, name = "Price Source", desc = "Predefined price sources for item value calculation.", width = "double",
-            values = function() return LA.availablePriceSources end,
+            values = function()
+                local values = LA.availablePriceSources
+                return (values and values) or {}
+            end,
             get = function(info)
                 return LA.db.profile.pricesource[info[#info]]
             end,
@@ -712,13 +715,13 @@ function Config:OnEnable()
     LA.Debug.Log("Config - Init")
 
    	-- register sounds
-    LSM:Register("sound", "Auction Window Open", 567482) -- AuctionWindowOpen
-    LSM:Register("sound", "Auction Window Close", 567499) -- AuctionWindowClose
-    LSM:Register("sound", "Auto Quest Complete", 567476) -- AutoQuestComplete
-    LSM:Register("sound", "Level Up", 567431) -- LevelUp
-    LSM:Register("sound", "Player Invite", 567451) -- iPlayerInviteA
-    LSM:Register("sound", "Raid Warning", 567397) -- RaidWarning
-    LSM:Register("sound", "Ready Check", 567409) -- ReadyCheck
+    LSM:Register("sound", "Auction Window Open", '567482') -- AuctionWindowOpen
+    LSM:Register("sound", "Auction Window Close", '567499') -- AuctionWindowClose
+    LSM:Register("sound", "Auto Quest Complete", '567476') -- AutoQuestComplete
+    LSM:Register("sound", "Level Up", '567431') -- LevelUp
+    LSM:Register("sound", "Player Invite", '567451') -- iPlayerInviteA
+    LSM:Register("sound", "Raid Warning", '567397') -- RaidWarning
+    LSM:Register("sound", "Ready Check", '567409') -- ReadyCheck
 
     -- general LootAppraiser configuration
     AceConfigRegistry:RegisterOptionsTable("LootAppraiser", options.args.general)
