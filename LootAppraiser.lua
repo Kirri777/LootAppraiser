@@ -18,8 +18,8 @@ local select, tostring, time, unpack, tonumber, floor, pairs, tinsert, smatch, m
 select, tostring, time, unpack, tonumber, floor, pairs, table.insert, string.match, math, gsub
 
 -- wow APIs
-local GetContainerItemID, GetContainerItemInfo, GetUnitName, GetItemInfo, IsShiftKeyDown, InterfaceOptionsFrame_OpenToCategory, GetBestMapForUnit, PlaySoundFile, GameFontNormal, RegisterAddonMessagePrefix, IsInGroup, UnitGUID, SecondsToTime, StaticPopupDialogs, StaticPopup_Show, SendAddonMessage =
-GetContainerItemID, GetContainerItemInfo, GetUnitName, GetItemInfo, IsShiftKeyDown, InterfaceOptionsFrame_OpenToCategory, C_Map.GetBestMapForUnit, PlaySoundFile, GameFontNormal, C_ChatInfo.RegisterAddonMessagePrefix, IsInGroup, UnitGUID, SecondsToTime, StaticPopupDialogs, StaticPopup_Show, C_ChatInfo.SendAddonMessage
+local GetContainerItemID, GetContainerItemInfo, GetUnitName, GetItemInfo, IsShiftKeyDown, InterfaceOptionsFrame_OpenToCategory, GetBestMapForUnit, PlaySoundFile, GameFontNormal, RegisterAddonMessagePrefix, IsInGroup, UnitGUID, SecondsToTime, StaticPopupDialogs, StaticPopup_Show, SendAddonMessage, IsAddOnLoaded =
+GetContainerItemID, GetContainerItemInfo, GetUnitName, GetItemInfo, IsShiftKeyDown, InterfaceOptionsFrame_OpenToCategory, C_Map.GetBestMapForUnit, PlaySoundFile, GameFontNormal, C_ChatInfo.RegisterAddonMessagePrefix, IsInGroup, UnitGUID, SecondsToTime, StaticPopupDialogs, StaticPopup_Show, C_ChatInfo.SendAddonMessage, C_AddOns.IsAddOnLoaded
 local INSTANCE_RESET_SUCCESS, OKAY, LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE = INSTANCE_RESET_SUCCESS, OKAY, LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE
 
 
@@ -500,6 +500,8 @@ end
 
 function private.PreparePricesources()
 	LA.Debug.Log("PreparePricesources()")
+
+	LA.availablePriceSources = {}
 
 	-- price source check --
 	local priceSources = private.GetAvailablePriceSources() or {}
@@ -1247,6 +1249,7 @@ function private.GetAvailablePriceSources()
 	end
 
 
+	-- LA.Debug.TableToString(priceSources)
 
 	return priceSources
 end
