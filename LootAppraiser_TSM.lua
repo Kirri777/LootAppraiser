@@ -128,6 +128,8 @@ function TSM.GetAvailablePriceSources()
 		end
 	end
 
+	-- LA.Debug.TableToString(tsmPriceSources)
+
 	-- add custom
 	table.insert(keys, "Custom")
 	sort(keys)
